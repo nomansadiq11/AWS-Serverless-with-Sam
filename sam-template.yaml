@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  nsadiq-lambda-function:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Runtime: 'nodejs8.10'
+      handler: 'index.handler'
+      CodeUri:
+        Bucket: somebuctname
+        Key: my-lambdapackage.zip
+      Events:
+        MySchedule:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 minute)
